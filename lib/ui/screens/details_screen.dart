@@ -4,7 +4,8 @@ import 'package:petfinders/util/constants.dart';
 import 'package:petfinders/util/size_config.dart';
 
 class DetailsScreen extends StatelessWidget {
-  const DetailsScreen({Key? key}) : super(key: key);
+  int index;
+  DetailsScreen({Key? key, required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +15,13 @@ class DetailsScreen extends StatelessWidget {
           Positioned(
             top: 0,
             child: Container(
-              child: const Image(
-                  image: NetworkImage(
-                      "https://www.akc.org/wp-content/uploads/2020/07/Golden-Retriever-puppy-standing-outdoors-500x486.jpg"),
-                  fit: BoxFit.cover),
+              child: Hero(
+                tag: "heroImage$index",
+                child: Image(
+                    image: NetworkImage(
+                        "https://www.akc.org/wp-content/uploads/2020/07/Golden-Retriever-puppy-standing-outdoors-500x486.jpg"),
+                    fit: BoxFit.cover),
+              ),
               decoration:
                   BoxDecoration(border: Border.all(color: Colors.black)),
               width: SizeConfig.screenWidth,

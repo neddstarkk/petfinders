@@ -22,17 +22,20 @@ class PetDisplayGrid extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10.0)),
               child: InkWell(
                 onTap: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => DetailsScreen())),
+                    MaterialPageRoute(builder: (context) => DetailsScreen(index: index,))),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Image(
-                      image: NetworkImage(
-                          "https://www.akc.org/wp-content/uploads/2020/07/Golden-Retriever-puppy-standing-outdoors-500x486.jpg"),
-                      height: MediaQuery.of(context).size.height / 4.5,
-                      width: 160,
-                      fit: BoxFit.cover,
+                    Hero(
+                      tag: "heroImage$index",
+                      child: Image(
+                        image: NetworkImage(
+                            "https://www.akc.org/wp-content/uploads/2020/07/Golden-Retriever-puppy-standing-outdoors-500x486.jpg"),
+                        height: MediaQuery.of(context).size.height / 4.5,
+                        width: 160,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0, left: 3.0),
