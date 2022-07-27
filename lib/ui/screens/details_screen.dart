@@ -25,6 +25,15 @@ class DetailsScreen extends StatelessWidget {
             ),
           ),
           const PetDetailsWidget(),
+          Positioned(
+              top: kToolbarHeight,
+              left: 20,
+              child: Container(
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: Colors.white),
+                child: BackButton(
+                  color: Colors.black,
+                ),
+              ))
         ]),
       ),
     );
