@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:petfinders/ui/widgets/home_screen_widgets/home_screen_appbar.dart';
+import 'package:petfinders/ui/widgets/home_screen_widgets/pet_display_grid.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({ Key? key }) : super(key: key);
@@ -8,7 +9,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: HomeScreenAppbar(),
-      body: ListView(),
+      body: PetDisplayGrid(),
     );
   }
 }
