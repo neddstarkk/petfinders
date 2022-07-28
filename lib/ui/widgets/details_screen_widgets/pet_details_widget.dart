@@ -60,7 +60,7 @@ class _PetDetailsWidgetState extends State<PetDetailsWidget> {
                   "${widget.pet.name}",
                   style: kPetNameDetailsScreenTextStyle,
                 ),
-                Text(
+                const Text(
                   "\$120",
                   style: kPetPriceDetailsScreenTextStyle,
                 )
@@ -73,7 +73,17 @@ class _PetDetailsWidgetState extends State<PetDetailsWidget> {
                   "${widget.pet.breed}",
                   style: kPetBreedDetailScreenTextStyle,
                 ),
-                widget.pet.adopted ? Text("Already Adopted") : Container(),
+                widget.pet.adopted
+                    ? Container(
+                        decoration: BoxDecoration(color: Color(0xffeaf0e6), borderRadius: BorderRadius.circular(7.0)),
+                        padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 3.0),
+                        margin: EdgeInsets.only(top: 3.0),
+                        child: const Text(
+                          "Adopted",
+                          style: TextStyle(color: Color(0xff48711f)),
+                        ),
+                      )
+                    : Container(),
               ],
             ),
             const Spacer(),
@@ -85,7 +95,8 @@ class _PetDetailsWidgetState extends State<PetDetailsWidget> {
                   PetFeatures(
                       featureName: "Sex", featureValue: "${widget.pet.gender}"),
                   PetFeatures(
-                      featureName: "Age", featureValue: "${widget.pet.age} year"),
+                      featureName: "Age",
+                      featureValue: "${widget.pet.age} year"),
                 ],
               ),
             ),
@@ -93,14 +104,18 @@ class _PetDetailsWidgetState extends State<PetDetailsWidget> {
             Container(
               width: SizeConfig.screenWidth,
               child: FloatingActionButton.extended(
-                backgroundColor: widget.pet.adopted ? Colors.grey: Color(0xff703edb),
-                onPressed: widget.pet.adopted ? null : () {
-                  BlocProvider.of<PetAdoptionCubit>(context).adoptPet(widget.pet.uid);
-                  setState(() {
-                    // Called to re build the UI of the DetailsScreen to reflect immediate changes
-                  });
-                  adopt(context);
-                },
+                backgroundColor:
+                    widget.pet.adopted ? Colors.grey : const Color(0xff703edb),
+                onPressed: widget.pet.adopted
+                    ? null
+                    : () {
+                        BlocProvider.of<PetAdoptionCubit>(context)
+                            .adoptPet(widget.pet.uid);
+                        setState(() {
+                          // Called to re build the UI of the DetailsScreen to reflect immediate changes
+                        });
+                        adopt(context);
+                      },
                 label: const Text("Adopt me"),
               ),
             )
