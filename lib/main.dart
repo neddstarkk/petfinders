@@ -11,18 +11,19 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
+  MyApp({ Key? key }) : super(key: key);
 
-  final HomeDisplayRepository repo = HomeDisplayRepository();
+  HomeDisplayRepository repository = HomeDisplayRepository();
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(scaffoldBackgroundColor: kScaffoldBackgroundColor),
-      debugShowCheckedModeBanner: false,
-      home: BlocProvider<PetAdoptionCubit>(
-          create: (context) => PetAdoptionCubit(repo),
-          child: const HomeScreen()),
+    return BlocProvider<PetAdoptionCubit>(
+      create: (context) => PetAdoptionCubit(repository),
+      child: MaterialApp(
+        theme: ThemeData(scaffoldBackgroundColor: kScaffoldBackgroundColor),
+        debugShowCheckedModeBanner: false,
+        home: const HomeScreen(),
+      ),
     );
   }
 }

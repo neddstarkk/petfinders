@@ -16,4 +16,8 @@ class HomeDisplayRepository {
   ];
 
   List<PetDisplayModel> get getPets => availablePetsForAdoption;
+
+  set setPets(List<PetDisplayModel> pets) {
+    availablePetsForAdoption = pets;
+  }
 }

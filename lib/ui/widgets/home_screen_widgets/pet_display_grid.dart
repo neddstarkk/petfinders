@@ -33,13 +33,11 @@ class PetDisplayGrid extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0)),
                     child: InkWell(
-                      onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => DetailsScreen(
-                                    index: index,
-                                    pet: pets[index],
-                                  ))),
+                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => DetailsScreen(
+                                index: index,
+                                pet: pets[index],
+                              ))),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,9 +94,7 @@ class PetDisplayGrid extends StatelessWidget {
               );
             },
           );
-        }
-
-        else {
+        } else {
           return Container();
         }
       }),

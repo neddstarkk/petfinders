@@ -23,4 +23,14 @@ class PetAdoptionCubit extends Cubit<PetAdoptionState> {
       emit(ErrorState());
     }
   }
+
+  adoptPet(int index) {
+    var pets = repository.getPets;
+
+    pets[index].adopted = true;
+
+    repository.setPets = pets;
+
+    getAllPets();
+  }
 }

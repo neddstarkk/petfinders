@@ -1,27 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:petfinders/cubit/pet_adoption_cubit.dart';
 import 'package:petfinders/models/pet_display_model.dart';
 import 'package:petfinders/ui/widgets/details_screen_widgets/pet_features_widget.dart';
 
 import '../../../util/constants.dart';
 import '../../../util/size_config.dart';
 
-class PetDetailsWidget extends StatelessWidget {
+class PetDetailsWidget extends StatefulWidget {
   PetDisplayModel pet;
   int index;
-  PetDetailsWidget({Key? key, required this.pet, required this.index}) : super(key: key);
+  PetDetailsWidget({Key? key, required this.pet, required this.index})
+      : super(key: key);
 
+  @override
+  State<PetDetailsWidget> createState() => _PetDetailsWidgetState();
+}
+
+class _PetDetailsWidgetState extends State<PetDetailsWidget> {
   void adopt(BuildContext context) {
     showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text("You've now Adopted ${pet.name}"),
+            title: Text("You've now Adopted ${widget.pet.name}"),
             actionsAlignment: MainAxisAlignment.center,
             actions: [
               ElevatedButton(
                   onPressed: () {
-                    
-
                     Navigator.pop(context);
                     Navigator.pop(context);
                   },
@@ -52,7 +58,7 @@ class PetDetailsWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "${pet.name}",
+                  "${widget.pet.name}",
                   style: kPetNameDetailsScreenTextStyle,
                 ),
                 Text(
@@ -61,9 +67,15 @@ class PetDetailsWidget extends StatelessWidget {
                 )
               ],
             ),
-            Text(
-              "${pet.breed}",
-              style: kPetBreedDetailScreenTextStyle,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "${widget.pet.breed}",
+                  style: kPetBreedDetailScreenTextStyle,
+                ),
+                widget.pet.adopted ? Text("Already Adopted") : Container(),
+              ],
             ),
             const Spacer(),
             Container(
@@ -71,8 +83,10 @@ class PetDetailsWidget extends StatelessWidget {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
-                  PetFeatures(featureName: "Sex", featureValue: "${pet.gender}"),
-                  PetFeatures(featureName: "Age", featureValue: "${pet.age} year"),
+                  PetFeatures(
+                      featureName: "Sex", featureValue: "${widget.pet.gender}"),
+                  PetFeatures(
+                      featureName: "Age", featureValue: "${widget.pet.age} year"),
                 ],
               ),
             ),
@@ -82,6 +96,10 @@ class PetDetailsWidget extends StatelessWidget {
               child: FloatingActionButton.extended(
                 backgroundColor: const Color(0xff703edb),
                 onPressed: () {
+                  BlocProvider.of<PetAdoptionCubit>(context).adoptPet(widget.index);
+                  setState(() {
+                    // Called to re build the UI of the DetailsScreen to reflect immediate changes
+                  });
                   adopt(context);
                 },
                 label: const Text("Adopt me"),
