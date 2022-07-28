@@ -16,13 +16,15 @@ class PetDisplayGrid extends StatelessWidget {
       return GridView.builder(
         itemCount: list!.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          childAspectRatio: 2,
+          childAspectRatio: 0.7,
           crossAxisCount: 2,
         ),
         itemBuilder: (BuildContext context, int index) {
-          return PetDisplayGridItem(
-            pets: list!,
-            index: index,
+          return Expanded(
+            child: PetDisplayGridItem(
+              pets: list!,
+              index: index,
+            ),
           );
         },
       );
