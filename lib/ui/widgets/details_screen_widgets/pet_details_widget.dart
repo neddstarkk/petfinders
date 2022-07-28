@@ -1,8 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:petfinders/cubit/pet_adoption_cubit.dart';
 import 'package:petfinders/models/pet_display_model.dart';
 import 'package:petfinders/ui/widgets/details_screen_widgets/pet_features_widget.dart';
+import 'package:confetti/confetti.dart';
 
 import '../../../util/constants.dart';
 import '../../../util/size_config.dart';
@@ -18,20 +21,45 @@ class PetDetailsWidget extends StatefulWidget {
 }
 
 class _PetDetailsWidgetState extends State<PetDetailsWidget> {
+
+   late ConfettiController _confettiController;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _confettiController = ConfettiController(duration: const Duration(seconds: 3));
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _confettiController.dispose();
+    super.dispose();
+  }
+
   void adopt(BuildContext context) {
     showDialog(
         context: context,
         builder: (context) {
-          return AlertDialog(
-            title: Text("You've now Adopted ${widget.pet.name}"),
-            actionsAlignment: MainAxisAlignment.center,
-            actions: [
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: const Text("Go Back"))
-            ],
+          return ConfettiWidget(
+            confettiController: _confettiController,
+            blastDirectionality: BlastDirectionality.explosive,
+            shouldLoop: false,
+            colors: const [Colors.blue, Colors.green, Colors.red, Colors.orange, Colors.purple],
+            blastDirection: pi / 2,
+            numberOfParticles: 50,
+            child: AlertDialog(
+              title: Text("You've now Adopted ${widget.pet.name}"),
+              actionsAlignment: MainAxisAlignment.center,
+              actions: [
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text("Go Back"))
+              ],
+            ),
           );
         });
   }
@@ -118,6 +146,7 @@ class _PetDetailsWidgetState extends State<PetDetailsWidget> {
                         setState(() {
                           // Called to re build the UI of the DetailsScreen to reflect immediate changes
                         });
+                        _confettiController.play();
                         adopt(context);
                       },
                 label: const Text("Adopt me"),
