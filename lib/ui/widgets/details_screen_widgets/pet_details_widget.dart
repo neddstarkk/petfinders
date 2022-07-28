@@ -1,22 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:petfinders/models/pet_display_model.dart';
 import 'package:petfinders/ui/widgets/details_screen_widgets/pet_features_widget.dart';
 
 import '../../../util/constants.dart';
 import '../../../util/size_config.dart';
 
 class PetDetailsWidget extends StatelessWidget {
-  const PetDetailsWidget({Key? key}) : super(key: key);
+  PetDisplayModel pet;
+  int index;
+  PetDetailsWidget({Key? key, required this.pet, required this.index}) : super(key: key);
 
   void adopt(BuildContext context) {
     showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: const Text("You've now Adopted <Pet Name>"),
+            title: Text("You've now Adopted ${pet.name}"),
             actionsAlignment: MainAxisAlignment.center,
             actions: [
               ElevatedButton(
                   onPressed: () {
+                    
+
                     Navigator.pop(context);
                     Navigator.pop(context);
                   },
@@ -45,9 +50,9 @@ class PetDetailsWidget extends StatelessWidget {
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children: [
                 Text(
-                  "Jenny",
+                  "${pet.name}",
                   style: kPetNameDetailsScreenTextStyle,
                 ),
                 Text(
@@ -57,7 +62,7 @@ class PetDetailsWidget extends StatelessWidget {
               ],
             ),
             Text(
-              "Golden Retriever",
+              "${pet.breed}",
               style: kPetBreedDetailScreenTextStyle,
             ),
             const Spacer(),
@@ -66,8 +71,8 @@ class PetDetailsWidget extends StatelessWidget {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
-                  PetFeatures(featureName: "Sex", featureValue: "Male"),
-                  PetFeatures(featureName: "Age", featureValue: "1 year"),
+                  PetFeatures(featureName: "Sex", featureValue: "${pet.gender}"),
+                  PetFeatures(featureName: "Age", featureValue: "${pet.age} year"),
                 ],
               ),
             ),

@@ -14,4 +14,6 @@ class HomeDisplayRepository {
     PetDisplayModel(age: 9, breed: "Golden Retriever", gender: "Female", name: "Grace", image: NetworkImage("https://www.akc.org/wp-content/uploads/2020/07/Golden-Retriever-puppy-standing-outdoors-500x486.jpg")),
     PetDisplayModel(age: 10, breed: "Golden Retriever", gender: "Female", name: "Grace", image: NetworkImage("https://www.akc.org/wp-content/uploads/2020/07/Golden-Retriever-puppy-standing-outdoors-500x486.jpg")),
   ];
+
+  List<PetDisplayModel> get getPets => availablePetsForAdoption;
 }
