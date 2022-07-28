@@ -38,6 +38,7 @@ dependencies:
   bloc: ^8.0.3
   http: ^0.13.4
   equatable: ^2.0.3
+  confetti: ^0.6.0
 
 dev_dependencies:
   flutter_test:
