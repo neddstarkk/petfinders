@@ -35,4 +35,28 @@ class PetAdoptionCubit extends Cubit<PetAdoptionState> {
 
     getAllPets();
   }
+
+  List<String> getAllNames() {
+    var pets = repository.getPets;
+    List<String> names = [];
+
+    for(int i = 0; i < pets.length; i++) {
+      names.add(pets[i].name);
+    }
+
+    return names;
+  }
+
+  List<PetDisplayModel> getPetsWithName(String petName) {
+    var pets = repository.getPets;
+    List<PetDisplayModel> petsWithDesiredName = [];
+
+    for(int i = 0; i < pets.length; i++) {
+      if(pets[i].name.toLowerCase() == petName) {
+        petsWithDesiredName.add(pets[i]);
+      }
+    }
+
+    return petsWithDesiredName;
+  }
 }

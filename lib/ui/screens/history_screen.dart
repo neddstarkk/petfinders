@@ -16,7 +16,10 @@ class _HistoryScreenState extends State<HistoryScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    // This violates the SOLID principle
     display = repo.populateHistory(context);
+    
     return Scaffold(
       body: display.isEmpty
           ? Center(
