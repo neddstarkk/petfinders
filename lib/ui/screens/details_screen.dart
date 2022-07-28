@@ -1,25 +1,63 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:petfinders/models/pet_display_model.dart';
 import 'package:petfinders/ui/widgets/details_screen_widgets/pet_details_widget.dart';
 import 'package:petfinders/util/constants.dart';
 import 'package:petfinders/util/size_config.dart';
 
-class DetailsScreen extends StatelessWidget {
+class DetailsScreen extends StatefulWidget {
   int index;
   PetDisplayModel pet;
   DetailsScreen({Key? key, required this.index, required this.pet})
       : super(key: key);
 
   @override
+  State<DetailsScreen> createState() => _DetailsScreenState();
+}
+
+class _DetailsScreenState extends State<DetailsScreen> {
+  late Timer _everySecond;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    _everySecond = Timer.periodic(Duration(seconds: 1), (timer) {
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _everySecond.cancel();
+    super.dispose();
+  }
+  
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(children: [
         Positioned(
           top: 0,
-          child: Container(
+          child: widget.pet.adopted ? ColorFiltered(
+            colorFilter: ColorFilter.mode(Colors.grey, BlendMode.saturation),
+            child: Container(
             child: Hero(
-              tag: "heroImage$index",
-              child: Image(image: pet.image, fit: BoxFit.cover),
+              tag: "heroImage${widget.index}",
+              child: Image(image: widget.pet.image, fit: BoxFit.cover),
+            ),
+            decoration:
+                BoxDecoration(border: Border.all(color: Colors.black)),
+            width: SizeConfig.screenWidth,
+            height: SizeConfig.screenHeight! / 1.7,
+          ),
+          ): Container(
+            child: Hero(
+              tag: "heroImage${widget.index}",
+              child: Image(image: widget.pet.image, fit: BoxFit.cover),
             ),
             decoration:
                 BoxDecoration(border: Border.all(color: Colors.black)),
@@ -28,8 +66,8 @@ class DetailsScreen extends StatelessWidget {
           ),
         ),
         PetDetailsWidget(
-          pet: pet,
-          index: index,
+          pet: widget.pet,
+          index: widget.index,
         ),
         Positioned(
             top: kToolbarHeight,

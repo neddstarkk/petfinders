@@ -29,7 +29,6 @@ class _PetDetailsWidgetState extends State<PetDetailsWidget> {
               ElevatedButton(
                   onPressed: () {
                     Navigator.pop(context);
-                    Navigator.pop(context);
                   },
                   child: const Text("Go Back"))
             ],
@@ -94,8 +93,8 @@ class _PetDetailsWidgetState extends State<PetDetailsWidget> {
             Container(
               width: SizeConfig.screenWidth,
               child: FloatingActionButton.extended(
-                backgroundColor: const Color(0xff703edb),
-                onPressed: () {
+                backgroundColor: widget.pet.adopted ? Colors.grey: Color(0xff703edb),
+                onPressed: widget.pet.adopted ? null : () {
                   BlocProvider.of<PetAdoptionCubit>(context).adoptPet(widget.pet.uid);
                   setState(() {
                     // Called to re build the UI of the DetailsScreen to reflect immediate changes
