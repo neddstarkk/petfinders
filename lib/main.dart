@@ -12,7 +12,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({ Key? key }) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
 
   HomeDisplayRepository repository = HomeDisplayRepository();
 
@@ -21,7 +21,10 @@ class MyApp extends StatelessWidget {
     return BlocProvider<PetAdoptionCubit>(
       create: (context) => PetAdoptionCubit(repository),
       child: MaterialApp(
-        theme: ThemeData(scaffoldBackgroundColor: kScaffoldBackgroundColor),
+        theme: ThemeData.light().copyWith(
+            scaffoldBackgroundColor: kScaffoldBackgroundColor,
+            appBarTheme: AppBarTheme(foregroundColor: Colors.black)),
+        
         debugShowCheckedModeBanner: false,
         home: const BottomNavBar(),
       ),

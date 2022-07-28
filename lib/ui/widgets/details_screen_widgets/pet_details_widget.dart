@@ -38,6 +38,9 @@ class _PetDetailsWidgetState extends State<PetDetailsWidget> {
 
   @override
   Widget build(BuildContext context) {
+    var brightness = MediaQuery.of(context).platformBrightness;
+    bool isDarkMode = brightness == Brightness.dark;
+
     return Positioned(
       top: (SizeConfig.screenHeight! / 1.7) - 20,
       child: Container(
@@ -46,7 +49,8 @@ class _PetDetailsWidgetState extends State<PetDetailsWidget> {
         width: SizeConfig.screenWidth,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(25),
-            color: kScaffoldBackgroundColor),
+            color: isDarkMode ? Theme.of(context).scaffoldBackgroundColor : kScaffoldBackgroundColor
+            ),
         padding: const EdgeInsets.only(
             left: 20.0, top: 25.0, bottom: 25.0, right: 10.0),
         child: Column(

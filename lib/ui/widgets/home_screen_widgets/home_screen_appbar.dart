@@ -20,7 +20,7 @@ class _HomeScreenAppbarState extends State<HomeScreenAppbar> {
     return AppBar(
       elevation: 0,
       backgroundColor: Colors.transparent,
-      title: const Text("Petfinders", style: TextStyle(color: Colors.black),),
+      title: Text("Petfinders", style: TextStyle(color: Theme.of(context).appBarTheme.foregroundColor),),
       centerTitle: true,
       actions: [
         IconButton(
