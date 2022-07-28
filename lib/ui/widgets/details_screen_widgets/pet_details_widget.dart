@@ -96,7 +96,7 @@ class _PetDetailsWidgetState extends State<PetDetailsWidget> {
               child: FloatingActionButton.extended(
                 backgroundColor: const Color(0xff703edb),
                 onPressed: () {
-                  BlocProvider.of<PetAdoptionCubit>(context).adoptPet(widget.index);
+                  BlocProvider.of<PetAdoptionCubit>(context).adoptPet(widget.pet.uid);
                   setState(() {
                     // Called to re build the UI of the DetailsScreen to reflect immediate changes
                   });

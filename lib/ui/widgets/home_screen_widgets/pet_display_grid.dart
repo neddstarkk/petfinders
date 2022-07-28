@@ -72,6 +72,7 @@ class PetDisplayGridItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      key: ObjectKey(pets[index]),
       child: Center(
         child: Card(
           clipBehavior: Clip.hardEdge,
@@ -82,6 +83,7 @@ class PetDisplayGridItem extends StatelessWidget {
                 builder: (context) => DetailsScreen(
                       index: index,
                       pet: pets[index],
+                      key: ObjectKey(pets[index]), 
                     ))),
             child: Column(
               mainAxisSize: MainAxisSize.min,

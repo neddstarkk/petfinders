@@ -26,10 +26,10 @@ class PetAdoptionCubit extends Cubit<PetAdoptionState> {
     }
   }
 
-  adoptPet(int index) {
+  adoptPet(int uid) {
     var pets = repository.getPets;
 
-    pets[index].adopted = true;
+    pets[pets.indexWhere((pet) => pet.uid == uid)].adopted = true;
 
     repository.setPets = pets;
 
