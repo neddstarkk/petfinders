@@ -7,6 +7,25 @@ import '../../../util/size_config.dart';
 class PetDetailsWidget extends StatelessWidget {
   const PetDetailsWidget({Key? key}) : super(key: key);
 
+  void adopt(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text("You've now Adopted <Pet Name>"),
+            actionsAlignment: MainAxisAlignment.center,
+            actions: [
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                  },
+                  child: const Text("Go Back"))
+            ],
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -37,8 +56,11 @@ class PetDetailsWidget extends StatelessWidget {
                 )
               ],
             ),
-            Text("Golden Retriever", style: kPetBreedDetailScreenTextStyle,),
-            Spacer(),
+            Text(
+              "Golden Retriever",
+              style: kPetBreedDetailScreenTextStyle,
+            ),
+            const Spacer(),
             Container(
               height: 100,
               child: ListView(
@@ -49,12 +71,14 @@ class PetDetailsWidget extends StatelessWidget {
                 ],
               ),
             ),
-            Spacer(),
+            const Spacer(),
             Container(
               width: SizeConfig.screenWidth,
               child: FloatingActionButton.extended(
-                backgroundColor: Color(0xff703edb),
-                onPressed: () {},
+                backgroundColor: const Color(0xff703edb),
+                onPressed: () {
+                  adopt(context);
+                },
                 label: const Text("Adopt me"),
               ),
             )
