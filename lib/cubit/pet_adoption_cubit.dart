@@ -11,6 +11,8 @@ class PetAdoptionCubit extends Cubit<PetAdoptionState> {
 
   final HomeDisplayRepository repository;
 
+  get repo => repository;
+
   getAllPets() {
     try {
       emit(LoadingState());
