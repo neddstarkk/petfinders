@@ -41,6 +41,7 @@ dependencies:
   confetti: ^0.6.0
   sqflite: ^2.0.2+1
   path: ^1.8.0
+  mockito: ^5.2.0
 
 dev_dependencies:
   flutter_test:

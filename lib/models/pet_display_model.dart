@@ -26,4 +26,5 @@ class PetDisplayModel {
   Map<String, Object?> toMap() {
     return {'uid': uid, 'name': name, 'age': age, 'breed': breed, 'image': image, 'gender': gender, 'adopted': adopted ? 1 : 0, 'price': price};
   }
+  
 }
