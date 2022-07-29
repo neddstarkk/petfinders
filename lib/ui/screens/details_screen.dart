@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 import 'package:petfinders/models/pet_display_model.dart';
+import 'package:petfinders/ui/screens/interactive_viewing_screen.dart';
 import 'package:petfinders/ui/widgets/details_screen_widgets/pet_details_widget.dart';
 import 'package:petfinders/util/constants.dart';
 import 'package:petfinders/util/size_config.dart';
@@ -59,17 +61,27 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     height: SizeConfig.screenHeight! / 1.7,
                   ),
                 )
-              : Container(
-                  child: Hero(
-                    tag: "heroImage${widget.index}",
-                    child: Image(
-                        image: NetworkImage(widget.pet.image),
-                        fit: BoxFit.cover),
+              : GestureDetector(
+                // Works on non adopted pets
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => InteractiveViewingScreen(
+                          image: Image(image: NetworkImage(widget.pet.image)),
+                        ),
+                      )),
+                  child: Container(
+                    child: Hero(
+                      tag: "heroImage${widget.index}",
+                      child: Image(
+                          image: NetworkImage(widget.pet.image),
+                          fit: BoxFit.cover),
+                    ),
+                    decoration:
+                        BoxDecoration(border: Border.all(color: Colors.black)),
+                    width: SizeConfig.screenWidth,
+                    height: SizeConfig.screenHeight! / 1.7,
                   ),
-                  decoration:
-                      BoxDecoration(border: Border.all(color: Colors.black)),
-                  width: SizeConfig.screenWidth,
-                  height: SizeConfig.screenHeight! / 1.7,
                 ),
         ),
         PetDetailsWidget(
