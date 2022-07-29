@@ -47,7 +47,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
             child: Container(
             child: Hero(
               tag: "heroImage${widget.index}",
-              child: Image(image: widget.pet.image, fit: BoxFit.cover),
+              child: Image(image: NetworkImage(widget.pet.image), fit: BoxFit.cover),
             ),
             decoration:
                 BoxDecoration(border: Border.all(color: Colors.black)),
@@ -57,7 +57,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
           ): Container(
             child: Hero(
               tag: "heroImage${widget.index}",
-              child: Image(image: widget.pet.image, fit: BoxFit.cover),
+              child: Image(image: NetworkImage(widget.pet.image), fit: BoxFit.cover),
             ),
             decoration:
                 BoxDecoration(border: Border.all(color: Colors.black)),

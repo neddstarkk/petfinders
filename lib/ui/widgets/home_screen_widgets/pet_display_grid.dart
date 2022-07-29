@@ -96,7 +96,7 @@ class PetDisplayGridItem extends StatelessWidget {
                           child: ColorFiltered(
                             colorFilter: const ColorFilter.mode(Colors.grey, BlendMode.saturation),
                             child: Image(
-                              image: pets[index].image,
+                              image: NetworkImage(pets[index].image),
                               height: MediaQuery.of(context).size.height / 4.5,
                               width: 160,
                               fit: BoxFit.cover,
@@ -104,7 +104,7 @@ class PetDisplayGridItem extends StatelessWidget {
                           ),
                         )
                       : Image(
-                          image: pets[index].image,
+                          image: NetworkImage(pets[index].image),
                           height: MediaQuery.of(context).size.height / 4.5,
                           width: 160,
                           fit: BoxFit.cover,

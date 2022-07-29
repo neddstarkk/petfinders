@@ -52,7 +52,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                       height: SizeConfig.screenHeight! / 9,
                       width: 120,
                       child: Image(
-                        image: display[index].image,
+                        image: NetworkImage(display[index].image),
                         fit: BoxFit.cover,
                       ),
                     ),
