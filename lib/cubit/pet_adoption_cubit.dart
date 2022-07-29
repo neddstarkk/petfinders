@@ -20,8 +20,7 @@ class PetAdoptionCubit extends Cubit<PetAdoptionState> {
       emit(LoadingState());
       List<PetDisplayModel> pets = await _databaseService.retrievePets();
 
-      if (pets.isEmpty) {
-        // insert records for the first time
+      if (pets.isEmpty || pets.length != repository.getPets.length) {
         pets = await _insertPetsInDB();
       }
 
@@ -56,7 +55,7 @@ class PetAdoptionCubit extends Cubit<PetAdoptionState> {
   }
 
   
-
+  // Called during search functionality
   List<PetDisplayModel> getPetsWithName(String petName) {
     var pets = repository.getPets;
     List<PetDisplayModel> petsWithDesiredName = [];

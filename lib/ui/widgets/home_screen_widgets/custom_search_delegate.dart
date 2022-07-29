@@ -5,13 +5,11 @@ import 'package:petfinders/models/pet_display_model.dart';
 import 'package:petfinders/ui/widgets/home_screen_widgets/pet_display_grid.dart';
 
 class CustomSearchDelegate extends SearchDelegate {
-
   @override
   List<Widget>? buildActions(BuildContext context) {
-    // TODO: implement buildActions
     return [
       IconButton(
-        icon: Icon(Icons.clear),
+        icon: const Icon(Icons.clear),
         onPressed: () {
           query = '';
         },
@@ -21,15 +19,13 @@ class CustomSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    // TODO: implement buildSuggestions
     return Column();
   }
 
   @override
   Widget? buildLeading(BuildContext context) {
-    // TODO: implement buildLeading
     return IconButton(
-      icon: Icon(Icons.arrow_back),
+      icon: const Icon(Icons.arrow_back),
       onPressed: () {
         close(context, null);
       },
@@ -38,10 +34,12 @@ class CustomSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    // TODO: implement buildResults
-    List<PetDisplayModel> searchResults = BlocProvider.of<PetAdoptionCubit>(context).getPetsWithName(query.toLowerCase());
-    
+    List<PetDisplayModel> searchResults =
+        BlocProvider.of<PetAdoptionCubit>(context)
+            .getPetsWithName(query.toLowerCase());
 
-    return PetDisplayGrid(list: searchResults,);
+    return PetDisplayGrid(
+      list: searchResults,
+    );
   }
 }

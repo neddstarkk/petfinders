@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:petfinders/cubit/pet_adoption_cubit.dart';
 
 import 'custom_search_delegate.dart';
 

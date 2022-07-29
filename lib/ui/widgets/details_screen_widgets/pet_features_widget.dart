@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import '../../../util/constants.dart';
 
 class PetFeatures extends StatelessWidget {
-  String featureName;
-  String featureValue;
+  final String featureName;
+  final String featureValue;
 
-  PetFeatures({Key? key, required this.featureName, required this.featureValue})
+  const PetFeatures(
+      {Key? key, required this.featureName, required this.featureValue})
       : super(key: key);
 
   @override
@@ -14,8 +15,8 @@ class PetFeatures extends StatelessWidget {
     return Container(
       height: 90,
       width: 120,
-      margin: EdgeInsets.symmetric(horizontal: 8.0),
-      padding: EdgeInsets.symmetric(horizontal: 5.0),
+      margin: const EdgeInsets.symmetric(horizontal: 8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 5.0),
       decoration: BoxDecoration(
         color: Theme.of(context).highlightColor,
         borderRadius: BorderRadius.circular(20),
@@ -30,7 +31,8 @@ class PetFeatures extends StatelessWidget {
         Center(
           child: Text(
             featureValue,
-            style: TextStyle(fontSize: 16, color: Color.fromARGB(255, 171, 150, 216)),
+            style: const TextStyle(
+                fontSize: 16, color: Color.fromARGB(255, 171, 150, 216)),
           ),
         )
       ]),

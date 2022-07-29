@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:petfinders/ui/screens/history_screen.dart';
 import 'package:petfinders/ui/screens/home_screen.dart';
 
@@ -30,9 +29,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
     SizeConfig().init(context);
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Color(0xff703edb),
+        selectedItemColor: const Color(0xff703edb),
         currentIndex: _selectedIndex,
-        items: [
+        items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(icon: Icon(Icons.history), label: "History")
         ],

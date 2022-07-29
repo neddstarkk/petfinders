@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:petfinders/models/pet_display_model.dart';
 
+// Data Source for this application
 class HomeDisplayRepository {
   List<PetDisplayModel> availablePetsForAdoption = [
     PetDisplayModel(
@@ -83,6 +83,60 @@ class HomeDisplayRepository {
         gender: "Male",
         name: "Tommy",
         image: "https://image.petmd.com/files/2022-06/golden-retriever.jpg"),
+    PetDisplayModel(
+        age: 5,
+        breed: "Russell Terrier",
+        gender: "Male",
+        name: "Rocky",
+        image:
+            "https://dogtime.com/assets/uploads/gallery/jack-russel-terrier-dog-breed-pictures/2-face.jpg",
+        uid: 10,
+        price: 130),
+    PetDisplayModel(
+        age: 6,
+        breed: "Golden Retriever",
+        gender: "Female",
+        name: "Nala",
+        image:
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Golden_Retriever_standing_Tucker.jpg/640px-Golden_Retriever_standing_Tucker.jpg",
+        uid: 11,
+        price: 200),
+    PetDisplayModel(
+        age: 3,
+        breed: "Labrador Retriever",
+        gender: "Female",
+        name: "Kelly",
+        image:
+            "https://cdn.britannica.com/82/232782-050-8062ACFA/Black-labrador-retriever-dog.jpg",
+        uid: 12,
+        price: 90),
+    PetDisplayModel(
+        age: 4,
+        breed: "Golden Shepherd",
+        gender: "Female",
+        name: "Froyo",
+        image:
+            "https://bloximages.newyork1.vip.townnews.com/stltoday.com/content/tncms/assets/v3/classifieds/9/bf/9bfac6f0-a985-11ea-8f66-9b1ed05fc2c8/5ede325e18e50.image.jpg?resize=667%2C500",
+        uid: 13,
+        price: 140),
+    PetDisplayModel(
+        age: 1,
+        breed: "Fox Terrier",
+        gender: "Male",
+        name: "Milo",
+        image:
+            "https://cdn.britannica.com/02/198002-050-452BDBD2/West-Highland-White-Terrier.jpg",
+        uid: 14,
+        price: 110),
+    PetDisplayModel(
+        age: 2,
+        breed: "Irish Terrier",
+        gender: "Male",
+        name: "Coco",
+        image:
+            "https://upload.wikimedia.org/wikipedia/commons/5/56/IrishTerrierSydenhamHillWoods.jpg",
+        uid: 15,
+        price: 190),
   ];
 
   List<PetDisplayModel> get getPets => availablePetsForAdoption;

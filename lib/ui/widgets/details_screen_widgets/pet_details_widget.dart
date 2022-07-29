@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:petfinders/cubit/pet_adoption_cubit.dart';
@@ -26,7 +24,6 @@ class _PetDetailsWidgetState extends State<PetDetailsWidget> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _confettiController =
         ConfettiController(duration: const Duration(seconds: 3));
@@ -34,7 +31,6 @@ class _PetDetailsWidgetState extends State<PetDetailsWidget> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _confettiController.dispose();
     super.dispose();
   }
@@ -74,7 +70,7 @@ class _PetDetailsWidgetState extends State<PetDetailsWidget> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "${widget.pet.name}",
+                  widget.pet.name,
                   style: kPetNameDetailsScreenTextStyle,
                 ),
                 const Text(
@@ -87,7 +83,7 @@ class _PetDetailsWidgetState extends State<PetDetailsWidget> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "${widget.pet.breed}",
+                  widget.pet.breed,
                   style: kPetBreedDetailScreenTextStyle,
                 ),
                 widget.pet.adopted
@@ -107,13 +103,13 @@ class _PetDetailsWidgetState extends State<PetDetailsWidget> {
               ],
             ),
             const Spacer(),
-            Container(
+            SizedBox(
               height: 100,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
                   PetFeatures(
-                      featureName: "Sex", featureValue: "${widget.pet.gender}"),
+                      featureName: "Sex", featureValue: widget.pet.gender),
                   PetFeatures(
                       featureName: "Age",
                       featureValue: "${widget.pet.age} year"),
@@ -121,7 +117,7 @@ class _PetDetailsWidgetState extends State<PetDetailsWidget> {
               ),
             ),
             const Spacer(),
-            Container(
+            SizedBox(
               width: SizeConfig.screenWidth,
               child: FloatingActionButton.extended(
                   backgroundColor: widget.pet.adopted
@@ -139,8 +135,8 @@ class _PetDetailsWidgetState extends State<PetDetailsWidget> {
                           _confettiController.play();
                           adopt(context);
                         },
-                  label:
-                      Text("Adopt me", style: TextStyle(color: Colors.white))),
+                  label: const Text("Adopt me",
+                      style: TextStyle(color: Colors.white))),
             )
           ],
         ),
