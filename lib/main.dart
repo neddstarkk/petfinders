@@ -22,9 +22,13 @@ class MyApp extends StatelessWidget {
       create: (context) => PetAdoptionCubit(repository),
       child: MaterialApp(
         theme: ThemeData.light().copyWith(
-            scaffoldBackgroundColor: kScaffoldBackgroundColor,
-            appBarTheme: AppBarTheme(foregroundColor: Colors.black)),
-        
+          scaffoldBackgroundColor: kScaffoldBackgroundColor,
+          appBarTheme: const AppBarTheme(
+            foregroundColor: Colors.black,
+          ),
+          highlightColor: Color(0xfff0ebfb)
+        ),
+        darkTheme: ThemeData.dark(),
         debugShowCheckedModeBanner: false,
         home: const BottomNavBar(),
       ),

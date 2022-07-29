@@ -17,7 +17,7 @@ class PetFeatures extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 8.0),
       padding: EdgeInsets.symmetric(horizontal: 5.0),
       decoration: BoxDecoration(
-        color: Color(0xfff0ebfb),
+        color: Theme.of(context).highlightColor,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -30,7 +30,7 @@ class PetFeatures extends StatelessWidget {
         Center(
           child: Text(
             featureValue,
-            style: TextStyle(fontSize: 16, color: Color(0xff703edb)),
+            style: TextStyle(fontSize: 16, color: Color.fromARGB(255, 171, 150, 216)),
           ),
         )
       ]),

@@ -149,7 +149,7 @@ class _PetDetailsWidgetState extends State<PetDetailsWidget> {
                         _confettiController.play();
                         adopt(context);
                       },
-                label: const Text("Adopt me"),
+                label: Text("Adopt me", style: TextStyle(color: Colors.white))
               ),
             )
           ],
