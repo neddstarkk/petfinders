@@ -25,8 +25,7 @@ class _HomeScreenAppbarState extends State<HomeScreenAppbar> {
       actions: [
         IconButton(
           onPressed: () {
-            List<String> allNames = BlocProvider.of<PetAdoptionCubit>(context).getAllNames();
-            showSearch(context: context, delegate: CustomSearchDelegate(allNames: allNames));
+            showSearch(context: context, delegate: CustomSearchDelegate());
           },
           icon: const Icon(
             Icons.search,

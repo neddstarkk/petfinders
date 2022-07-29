@@ -9,6 +9,7 @@ import 'package:confetti/confetti.dart';
 
 import '../../../util/constants.dart';
 import '../../../util/size_config.dart';
+import 'confetti_popup.dart';
 
 class PetDetailsWidget extends StatefulWidget {
   PetDisplayModel pet;
@@ -21,14 +22,14 @@ class PetDetailsWidget extends StatefulWidget {
 }
 
 class _PetDetailsWidgetState extends State<PetDetailsWidget> {
-
-   late ConfettiController _confettiController;
+  late ConfettiController _confettiController;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _confettiController = ConfettiController(duration: const Duration(seconds: 3));
+    _confettiController =
+        ConfettiController(duration: const Duration(seconds: 3));
   }
 
   @override
@@ -42,28 +43,8 @@ class _PetDetailsWidgetState extends State<PetDetailsWidget> {
     showDialog(
         context: context,
         builder: (context) {
-          return ConfettiWidget(
-            confettiController: _confettiController,
-            blastDirectionality: BlastDirectionality.explosive,
-            shouldLoop: false,
-            colors: const [Colors.blue, Colors.green, Colors.red, Colors.orange, Colors.purple],
-            blastDirection: pi / 2,
-            numberOfParticles: 50,
-            child: AlertDialog(
-              title: Text("You've now Adopted ${widget.pet.name}"),
-              actionsAlignment: MainAxisAlignment.center,
-              actions: [
-                ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                      setState(() {
-                        
-                      });
-                    },
-                    child: const Text("Go Back"))
-              ],
-            ),
-          );
+          return ConfettiPopup(
+              confettiController: _confettiController, widget: widget);
         });
   }
 
@@ -80,8 +61,9 @@ class _PetDetailsWidgetState extends State<PetDetailsWidget> {
         width: SizeConfig.screenWidth,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(25),
-            color: isDarkMode ? Theme.of(context).scaffoldBackgroundColor : kScaffoldBackgroundColor
-            ),
+            color: isDarkMode
+                ? Theme.of(context).scaffoldBackgroundColor
+                : kScaffoldBackgroundColor),
         padding: const EdgeInsets.only(
             left: 20.0, top: 25.0, bottom: 25.0, right: 10.0),
         child: Column(
@@ -110,9 +92,12 @@ class _PetDetailsWidgetState extends State<PetDetailsWidget> {
                 ),
                 widget.pet.adopted
                     ? Container(
-                        decoration: BoxDecoration(color: Color(0xffeaf0e6), borderRadius: BorderRadius.circular(7.0)),
-                        padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 3.0),
-                        margin: EdgeInsets.only(top: 3.0),
+                        decoration: BoxDecoration(
+                            color: const Color(0xffeaf0e6),
+                            borderRadius: BorderRadius.circular(7.0)),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 5.0, vertical: 3.0),
+                        margin: const EdgeInsets.only(top: 3.0),
                         child: const Text(
                           "Adopted",
                           style: TextStyle(color: Color(0xff48711f)),
@@ -139,22 +124,23 @@ class _PetDetailsWidgetState extends State<PetDetailsWidget> {
             Container(
               width: SizeConfig.screenWidth,
               child: FloatingActionButton.extended(
-                backgroundColor:
-                    widget.pet.adopted ? Colors.grey : const Color(0xff703edb),
-                onPressed: widget.pet.adopted
-                    ? null
-                    : () {
-                        BlocProvider.of<PetAdoptionCubit>(context)
-                            .adoptPet(widget.pet.uid);
-                        setState(() {
-                          // Called to re build the UI of the DetailsScreen to reflect immediate changes
-                          widget.pet.adopted = true;
-                        });
-                        _confettiController.play();
-                        adopt(context);
-                      },
-                label: Text("Adopt me", style: TextStyle(color: Colors.white))
-              ),
+                  backgroundColor: widget.pet.adopted
+                      ? Colors.grey
+                      : const Color(0xff703edb),
+                  onPressed: widget.pet.adopted
+                      ? null
+                      : () {
+                          BlocProvider.of<PetAdoptionCubit>(context)
+                              .adoptPet(widget.pet.uid);
+                          setState(() {
+                            // Called to re build the UI of the DetailsScreen to reflect immediate changes
+                            widget.pet.adopted = true;
+                          });
+                          _confettiController.play();
+                          adopt(context);
+                        },
+                  label:
+                      Text("Adopt me", style: TextStyle(color: Colors.white))),
             )
           ],
         ),

@@ -66,7 +66,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => InteractiveViewingScreen(
+                        builder: (context) => InteractiveViewingScreen(tag: "heroImage${widget.index}",
                           image: Image(image: NetworkImage(widget.pet.image)),
                         ),
                       )),

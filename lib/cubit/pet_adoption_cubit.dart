@@ -18,45 +18,42 @@ class PetAdoptionCubit extends Cubit<PetAdoptionState> {
   getAllPets() async {
     try {
       emit(LoadingState());
-      List<PetDisplayModel> pets;
-      pets = await _databaseService.retrievePets();
+      List<PetDisplayModel> pets = await _databaseService.retrievePets();
 
       if (pets.isEmpty) {
         // insert records for the first time
-        pets = repository.getPets;
-        for (int i = 0; i < pets.length; i++) {
-          await _databaseService.insertPet(pets[i]);
-        }
+        pets = await _insertPetsInDB();
       }
 
       emit(LoadedState(pets));
     } catch (e) {
-      emit(ErrorState());
       print("EXCEPTION: $e");
+      emit(ErrorState());
     }
   }
 
+  Future<List<PetDisplayModel>> _insertPetsInDB() async {
+    List<PetDisplayModel> pets = repository.getPets;
+    for (int i = 0; i < pets.length; i++) {
+      await _databaseService.insertPet(pets[i]);
+    }
+
+    return pets;
+  }
+
   adoptPet(int uid) async {
-    var pets = repository.getPets;
+    List<PetDisplayModel> pets = repository.getPets;
 
     pets[pets.indexWhere((pet) => pet.uid == uid)].adopted = true;
-    await _databaseService.updatePet(pets[pets.indexWhere((pet) => pet.uid == uid)]);
+    await _databaseService
+        .updatePet(pets[pets.indexWhere((pet) => pet.uid == uid)]);
 
     repository.setPets = pets;
 
     getAllPets();
   }
 
-  List<String> getAllNames() {
-    var pets = repository.getPets;
-    List<String> names = [];
-
-    for (int i = 0; i < pets.length; i++) {
-      names.add(pets[i].name);
-    }
-
-    return names;
-  }
+  
 
   List<PetDisplayModel> getPetsWithName(String petName) {
     var pets = repository.getPets;
