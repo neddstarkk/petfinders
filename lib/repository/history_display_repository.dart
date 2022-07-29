@@ -10,7 +10,7 @@ class HistoryDisplayRepository {
     HomeDisplayRepository list =
         BlocProvider.of<PetAdoptionCubit>(context).repo;
 
-    var newList = list.availablePetsForAdoption;
+    var newList = list.getPets;
 
     for (int i = 0; i < newList.length; i++) {
       if (newList[i].adopted) {

@@ -25,6 +25,8 @@ class PetAdoptionCubit extends Cubit<PetAdoptionState> {
         pets = await _insertPetsInDB();
       }
 
+      repository.setPets = pets;
+
       emit(LoadedState(pets));
     } catch (e) {
       print("EXCEPTION: $e");

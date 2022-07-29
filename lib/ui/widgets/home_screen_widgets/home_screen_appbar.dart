@@ -29,7 +29,6 @@ class _HomeScreenAppbarState extends State<HomeScreenAppbar> {
           },
           icon: const Icon(
             Icons.search,
-            color: Colors.black,
           ),
         )
       ],
