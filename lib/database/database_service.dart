@@ -55,6 +55,9 @@ class DatabaseService {
 
   Future<int> updatePet(PetDisplayModel pet) async {
     Database db = await database;
+
+    print("ADOPTED: ${pet.adopted}");
+
     int result = await db
         .update('pets', pet.toMap(), where: "uid = ?", whereArgs: [pet.uid]);
     return result;
@@ -65,6 +68,13 @@ class DatabaseService {
     final List<Map<String, Object?>> queryResult =
         await db.query('pets');
     return queryResult.map((e) => PetDisplayModel.fromMap(e)).toList();
+  }
+
+  Future<PetDisplayModel> retrieveSinglePet(PetDisplayModel pet) async {
+    Database db = await database;
+    final List<Map<String, Object?>> queryResult =
+        await db.query('pets', where: "uid = ?", whereArgs: [pet.uid]);
+    return queryResult.map((e) => PetDisplayModel.fromMap(e)).toList()[0];
   }
 
   Future<void> deletepet(int id) async {

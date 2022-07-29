@@ -35,35 +35,42 @@ class _DetailsScreenState extends State<DetailsScreen> {
     _everySecond.cancel();
     super.dispose();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(children: [
         Positioned(
           top: 0,
-          child: widget.pet.adopted ? ColorFiltered(
-            colorFilter: ColorFilter.mode(Colors.grey, BlendMode.saturation),
-            child: Container(
-            child: Hero(
-              tag: "heroImage${widget.index}",
-              child: Image(image: NetworkImage(widget.pet.image), fit: BoxFit.cover),
-            ),
-            decoration:
-                BoxDecoration(border: Border.all(color: Colors.black)),
-            width: SizeConfig.screenWidth,
-            height: SizeConfig.screenHeight! / 1.7,
-          ),
-          ): Container(
-            child: Hero(
-              tag: "heroImage${widget.index}",
-              child: Image(image: NetworkImage(widget.pet.image), fit: BoxFit.cover),
-            ),
-            decoration:
-                BoxDecoration(border: Border.all(color: Colors.black)),
-            width: SizeConfig.screenWidth,
-            height: SizeConfig.screenHeight! / 1.7,
-          ),
+          child: widget.pet.adopted
+              ? ColorFiltered(
+                  colorFilter:
+                      ColorFilter.mode(Colors.grey, BlendMode.saturation),
+                  child: Container(
+                    child: Hero(
+                      tag: "heroImage${widget.index}",
+                      child: Image(
+                          image: NetworkImage(widget.pet.image),
+                          fit: BoxFit.cover),
+                    ),
+                    decoration:
+                        BoxDecoration(border: Border.all(color: Colors.black)),
+                    width: SizeConfig.screenWidth,
+                    height: SizeConfig.screenHeight! / 1.7,
+                  ),
+                )
+              : Container(
+                  child: Hero(
+                    tag: "heroImage${widget.index}",
+                    child: Image(
+                        image: NetworkImage(widget.pet.image),
+                        fit: BoxFit.cover),
+                  ),
+                  decoration:
+                      BoxDecoration(border: Border.all(color: Colors.black)),
+                  width: SizeConfig.screenWidth,
+                  height: SizeConfig.screenHeight! / 1.7,
+                ),
         ),
         PetDetailsWidget(
           pet: widget.pet,
@@ -74,8 +81,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
             left: 20,
             child: Container(
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: Colors.white),
+                  borderRadius: BorderRadius.circular(15), color: Colors.white),
               child: BackButton(
                 color: Colors.black,
               ),

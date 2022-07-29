@@ -21,16 +21,6 @@ class PetAdoptionCubit extends Cubit<PetAdoptionState> {
       List<PetDisplayModel> pets;
       pets = await _databaseService.retrievePets();
 
-      if (pets.isEmpty) {
-        pets = repository.getPets;
-        for (int i = 0; i < pets.length; i++) {
-          await _databaseService.insertPet(pets[i]);
-        }
-        print("RECORDS BEING INSERTED FOR THE FIRST TIME");
-      }
-
-      print("PETS: $pets");
-
       emit(LoadedState(pets));
     } catch (e) {
       emit(ErrorState());
@@ -39,10 +29,10 @@ class PetAdoptionCubit extends Cubit<PetAdoptionState> {
   }
 
   adoptPet(int uid) async {
-    var pets = repository.getPets;
+    var pets = await _databaseService.retrievePets();
 
     pets[pets.indexWhere((pet) => pet.uid == uid)].adopted = true;
-    await _databaseService
+    int newSomething = await _databaseService
         .updatePet(pets[pets.indexWhere((pet) => pet.uid == uid)]);
 
     repository.setPets = pets;

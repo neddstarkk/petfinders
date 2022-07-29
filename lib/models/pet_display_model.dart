@@ -19,7 +19,7 @@ class PetDisplayModel {
         breed = res["breed"],
         image = res["image"],
         gender = res["gender"],
-        adopted = res["adopted"] == true,
+        adopted = res["adopted"] == 1,
         price = res["price"];
 
 
