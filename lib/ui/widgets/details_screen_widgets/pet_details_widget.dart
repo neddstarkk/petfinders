@@ -56,6 +56,9 @@ class _PetDetailsWidgetState extends State<PetDetailsWidget> {
                 ElevatedButton(
                     onPressed: () {
                       Navigator.pop(context);
+                      setState(() {
+                        
+                      });
                     },
                     child: const Text("Go Back"))
               ],
@@ -145,6 +148,7 @@ class _PetDetailsWidgetState extends State<PetDetailsWidget> {
                             .adoptPet(widget.pet.uid);
                         setState(() {
                           // Called to re build the UI of the DetailsScreen to reflect immediate changes
+                          widget.pet.adopted = true;
                         });
                         _confettiController.play();
                         adopt(context);

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:path/path.dart';
 import 'package:petfinders/models/pet_display_model.dart';
 import 'package:sqflite/sqflite.dart';
@@ -29,6 +30,10 @@ class DatabaseService {
 
   Future<Database> initDB() async {
     final String path = await getDatabasesPath();
+
+    if(kDebugMode) {
+      databaseFactory.deleteDatabase(path);
+    }
 
     return await openDatabase(join(path, 'pets.db'),
         onCreate: _onCreate, version: 1);
@@ -65,8 +70,7 @@ class DatabaseService {
 
   Future<List<PetDisplayModel>> retrievePets() async {
     Database db = await database;
-    final List<Map<String, Object?>> queryResult =
-        await db.query('pets');
+    final List<Map<String, Object?>> queryResult = await db.query('pets');
     return queryResult.map((e) => PetDisplayModel.fromMap(e)).toList();
   }
 
